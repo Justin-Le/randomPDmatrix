@@ -8,6 +8,9 @@ condition_num = 1e3;
 rand_eigvals_flag = 1;
 P = generate_randomPDmatrix(seed, n, condition_num, rand_eigvals_flag);
 
+fprintf('Condition number: %f.\n\n', cond(P));
+disp('Eigenvalues: '); fprintf('%.3f ', eig(P)); fprintf('\n');
+
 % b = ones(n, 1);
 % [sol, fval] = quadprog(P, b); % solve a matrix equation involving P
 
@@ -33,7 +36,4 @@ function P = generate_randomPDmatrix(seed, n, condition_num, rand_eigvals_flag)
 
     P = U*S*V';
     P = P*P';
-
-    fprintf('Condition number: %f.\n\n', cond(P));
-    disp('Eigenvalues: '); fprintf('%.3f ', eig(P)); fprintf('\n');
 end
